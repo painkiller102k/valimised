@@ -28,6 +28,13 @@ if(isset($_REQUEST['minus1punkt'])){
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
+
+// kommentaari lisamise päring
+if (isset($_REQUEST['uue_komment_id']) && !empty($_REQUEST['uus_kommentaar'])) {
+    kommentaarlisamine($_REQUEST['uus_kommentaar'], $_REQUEST['uue_komment_id']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

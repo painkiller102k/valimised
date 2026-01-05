@@ -24,6 +24,14 @@ function naitatabel()
         echo "<td>{$punktid}</td>";
         echo "<td><a href='?lisa1punkt={$id}'> +1 punkt</a></td>";
         echo "<td><a href='?minus1punkt={$id}'> -1 punkt</a></td>";
+        echo "<td>".nl2br(htmlspecialchars($kommentaarid))."</td>";
+        echo "<td>
+                <form method='POST' action=''>
+                    <input type='hidden' name='uue_komment_id' value='{$id}'>
+                    <input type='text' name='uus_kommentaar' placeholder='Lisa kommentaar'>
+                    <input type='submit' value='OK'>
+                </form>
+              </td>";
         echo "<td><a href='?kustuta={$id}'> Kustuta</a></td>";
         echo "</tr>";
         }
@@ -53,4 +61,14 @@ function miinuspunkt($id){
         $paring->bind_param("i", $id);
         $paring->execute();
 
+}
+
+// kommentaari lisamine - UPDATE
+function kommentaarlisamine($kommentaar, $id){
+    global $yhendus;
+    $paring = $yhendus->prepare(
+        "UPDATE valimised SET kommentaarid = CONCAT(kommentaarid, ?) WHERE id = ?");
+    $kommentaar .= "\n";
+    $paring->bind_param("si", $kommentaar, $id);
+    $paring->execute();
 }
