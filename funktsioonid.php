@@ -24,6 +24,7 @@ function naitatabel()
         echo "<td>{$punktid}</td>";
         echo "<td><a href='?lisa1punkt={$id}'> +1 punkt</a></td>";
         echo "<td><a href='?minus1punkt={$id}'> -1 punkt</a></td>";
+        echo "<td><a href='?kustuta={$id}'> Kustuta</a></td>";
         echo "</tr>";
         }
 }
@@ -32,6 +33,15 @@ function lisaPresident($presidentNimi, $pilt, $punktid){
     global $yhendus;
     $paring = $yhendus->prepare("insert into valimised (president, pilt, punktid, lisamisaeg) values (?, ?, ?, NOW())");
     $paring->bind_param("ssi", $presidentNimi, $pilt, $punktid);
+    $paring->execute();
+    $yhendus->close();
+}
+
+//kustutamine
+function kustutaPresident($id){
+    global $yhendus;
+    $paring = $yhendus->prepare("delete from valimised where id=?");
+    $paring->bind_param("i", $id);
     $paring->execute();
     $yhendus->close();
 }

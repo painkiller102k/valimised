@@ -1,5 +1,13 @@
 <?php
 require("funktsioonid.php");
+
+// päring funktsioonid kustuta
+if(isset($_REQUEST['kustuta'])){
+    kustutaPresident($_REQUEST['kustuta']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
 // päringud funktsioonide otsimiseks failis funktsioonid.php
 if(isset($_REQUEST['lisa1punkt'])){
     lisapunkt($_REQUEST['lisa1punkt']);
@@ -45,6 +53,7 @@ if(!empty($_REQUEST['presidentNimi'])){
     <br>
     <label for="punktid">Punktid : </label>
     <input type="number" name="punktid" id="punktid">
+
     <input type="submit" value="Lisa">
 </form>
 
