@@ -6,6 +6,13 @@ if(isset($_REQUEST['lisa1punkt'])){
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
+
+// päring lisaPresident funktsioon otsimiseks
+if(isset($_REQUEST['presidentNimi']) && !empty($_REQUEST['presidentNimi'])){
+    lisaPresident($_REQUEST['presidentNimi'], $_REQUEST['pilt']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,5 +35,16 @@ if(isset($_REQUEST['lisa1punkt'])){
     ?>
 
 </table>
+<h2>Lisa oma presidendi</h2>
+<form action="">
+    <label for="presidentNimi">President nimi : </label>
+    <input type="text" name="presidentNimi" id="presidentNimi">
+    <br>
+    <label for="presidentNimi">President pilt : </label>
+    <textarea name="pilt" id="pilt"></textarea>
+    <br>
+    <input type="submit" value="Lisa">
+</form>
+
 </body>
 </html>
