@@ -35,15 +35,38 @@ if (isset($_REQUEST['uue_komment_id']) && !empty($_REQUEST['uus_kommentaar'])) {
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
+
+// näita
+if (isset($_REQUEST['naita'])) {
+    naitaPresident($_REQUEST['naita']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+// peida
+if (isset($_REQUEST['peida'])) {
+    peidaPresident($_REQUEST['peida']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+// punktid nulliks
+if (isset($_REQUEST['nulliks'])) {
+    punktidNulliks($_REQUEST['nulliks']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Tabel Valimised funktsioonidega</title>
+    <link rel="stylesheet" href="valimisedStyle.css">
 </head>
 <body>
 <h1>Tabel Valimised kirjutatud funktsioonide abil</h1>
+
 <table>
     <tr>
         <th>President nimi</th>
@@ -51,25 +74,30 @@ if (isset($_REQUEST['uue_komment_id']) && !empty($_REQUEST['uus_kommentaar'])) {
         <th>+1 punkt</th>
         <th>-1 punkt</th>
         <th>Kommentaar</th>
+        <th>Lisa kommentaar</th>
+        <th>Punktid nulliks</th>
+        <th>Näita / Peida</th>
+        <th>Status</th>
         <th>Kustuta</th>
     </tr>
+
     <?php
     // funktsioon mis näitab tabeli asub funktsioonid.php failis
     naitatabel();
     ?>
-
 </table>
+
 <h2>Lisa oma presidendi</h2>
-<form action="">
+<form action="" method="GET">
     <label for="presidentNimi">President nimi : </label>
     <input type="text" name="presidentNimi" id="presidentNimi">
     <br>
-    <label for="presidentNimi">President pilt : </label>
+    <label for="pilt">President pilt : </label>
     <textarea name="pilt" id="pilt"></textarea>
     <br>
     <label for="punktid">Punktid : </label>
     <input type="number" name="punktid" id="punktid">
-
+    <br>
     <input type="submit" value="Lisa">
 </form>
 
