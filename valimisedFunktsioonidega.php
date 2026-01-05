@@ -1,5 +1,11 @@
 <?php
 require("funktsioonid.php");
+// päringud funktsioonide otsimiseks failis funktsioonid.php
+if(isset($_REQUEST['lisa1punkt'])){
+    lisapunkt($_REQUEST['lisa1punkt']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
