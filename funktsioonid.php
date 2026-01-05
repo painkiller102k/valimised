@@ -28,10 +28,10 @@ function naitatabel()
         }
 }
 // uue presidenti lisamine - INSERT
-function lisaPresident($presidentNimi, $pilt){
+function lisaPresident($presidentNimi, $pilt, $punktid){
     global $yhendus;
-    $paring = $yhendus->prepare("insert into valimised (president, pilt, lisamisaeg) values (?, ?, NOW())");
-    $paring->bind_param("ss", $presidentNimi, $pilt);
+    $paring = $yhendus->prepare("insert into valimised (president, pilt, punktid, lisamisaeg) values (?, ?, ?, NOW())");
+    $paring->bind_param("ssi", $presidentNimi, $pilt, $punktid);
     $paring->execute();
     $yhendus->close();
 }

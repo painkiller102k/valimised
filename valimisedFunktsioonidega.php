@@ -8,8 +8,8 @@ if(isset($_REQUEST['lisa1punkt'])){
 }
 
 // päring lisaPresident funktsioon otsimiseks
-if(isset($_REQUEST['presidentNimi']) && !empty($_REQUEST['presidentNimi'])){
-    lisaPresident($_REQUEST['presidentNimi'], $_REQUEST['pilt']);
+if(!empty($_REQUEST['presidentNimi'])){
+    lisaPresident($_REQUEST['presidentNimi'], $_REQUEST['pilt'], $_REQUEST['punktid']);
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -43,6 +43,8 @@ if(isset($_REQUEST['presidentNimi']) && !empty($_REQUEST['presidentNimi'])){
     <label for="presidentNimi">President pilt : </label>
     <textarea name="pilt" id="pilt"></textarea>
     <br>
+    <label for="punktid">Punktid : </label>
+    <input type="number" name="punktid" id="punktid">
     <input type="submit" value="Lisa">
 </form>
 
