@@ -45,3 +45,12 @@ function kustutaPresident($id){
     $paring->execute();
     $yhendus->close();
 }
+
+//miinus punkt
+function miinuspunkt($id){
+    global $yhendus;
+        $paring = $yhendus->prepare("UPDATE valimised SET punktid = punktid - 1 WHERE id = ?");
+        $paring->bind_param("i", $id);
+        $paring->execute();
+
+}

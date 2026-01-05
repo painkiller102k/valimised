@@ -21,6 +21,13 @@ if(!empty($_REQUEST['presidentNimi'])){
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
+
+// -punkt funktsioon
+if(isset($_REQUEST['minus1punkt'])){
+    miinuspunkt($_REQUEST['minus1punkt']);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +43,8 @@ if(!empty($_REQUEST['presidentNimi'])){
         <th>Punktid</th>
         <th>+1 punkt</th>
         <th>-1 punkt</th>
+        <th>Kommentaar</th>
+        <th>Kustuta</th>
     </tr>
     <?php
     // funktsioon mis näitab tabeli asub funktsioonid.php failis
